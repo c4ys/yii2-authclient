@@ -1,8 +1,8 @@
 {
-    "name": "yujiandong/yii2-authclient",
+    "name": "c4ys/yii2-authclient",
     "description": "Yii Authclient for Weibo, QQ, Wechat and etc",
     "keywords": ["yii authclient","Weibo Auth","QQ Auth","Wechat Auth"],
-    "homepage": "https://github.com/yujiandong/yii2-authclient",
+    "homepage": "https://github.com/c4ys/yii2-authclient",
     "license": "MIT",
     "authors": [
         {
@@ -16,6 +16,6 @@
         "yiisoft/yii2-authclient": "~2.0@dev"
     },
     "autoload": {
-        "psr-4": {"yujiandong\\authclient\\": ""}
+        "psr-4": {"c4ys\\authclient\\": ""}
     }
 }

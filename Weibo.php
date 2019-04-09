@@ -1,6 +1,6 @@
 <?php
 
-namespace yujiandong\authclient;
+namespace c4ys\authclient;
 
 use yii\authclient\OAuth2;
 
@@ -17,7 +17,7 @@ use yii\authclient\OAuth2;
  *         'class' => 'yii\authclient\Collection',
  *         'clients' => [
  *             'weibo' => [
- *                 'class' => 'yujiandong\authclient\Weibo',
+ *                 'class' => 'c4ys\authclient\Weibo',
  *                 'clientId' => 'wb_key',
  *                 'clientSecret' => 'wb_secret',
  *             ],

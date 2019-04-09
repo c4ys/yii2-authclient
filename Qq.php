@@ -1,6 +1,6 @@
 <?php
 
-namespace yujiandong\authclient;
+namespace c4ys\authclient;
 
 use yii\authclient\OAuth2;
 use yii\web\HttpException;
@@ -19,7 +19,7 @@ use Yii;
  *         'class' => 'yii\authclient\Collection',
  *         'clients' => [
  *             'qq' => [
- *                 'class' => 'yujiandong\authclient\Qq',
+ *                 'class' => 'c4ys\authclient\Qq',
  *                 'clientId' => 'qq_appid',
  *                 'clientSecret' => 'qq_appkey',
  *             ],

@@ -1,5 +1,5 @@
 <?php
-namespace yujiandong\authclient;
+namespace c4ys\authclient;
 
 use yii\authclient\OAuth2;
 use yii\web\HttpException;
@@ -18,12 +18,12 @@ use Yii;
  *         'class' => 'yii\authclient\Collection',
  *         'clients' => [
  *             'weixin' => [   // for account of https://open.weixin.qq.com/
- *                 'class' => 'yujiandong\authclient\Weixin',
+ *                 'class' => 'c4ys\authclient\Weixin',
  *                 'clientId' => 'weixin_appid',
  *                 'clientSecret' => 'weixin_appkey',
  *             ],
  *             'weixinmp' => [  // for account of https://mp.weixin.qq.com/
- *                 'class' => 'yujiandong\authclient\Weixin',
+ *                 'class' => 'c4ys\authclient\Weixin',
  *                 'type' => 'mp',
  *                 'clientId' => 'weixin_appid',
  *                 'clientSecret' => 'weixin_appkey',
