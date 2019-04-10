@@ -1,4 +1,5 @@
 <?php
+
 namespace c4ys\authclient;
 
 use yii\authclient\OAuth2;
@@ -60,6 +61,7 @@ class Weixin extends OAuth2
     public $apiBaseUrl = 'https://api.weixin.qq.com';
 
     public $type = null;
+
     /**
      * @inheritdoc
      */
@@ -89,8 +91,6 @@ class Weixin extends OAuth2
      */
     public function buildAuthUrl(array $params = [])
     {
-        $authState = $this->generateAuthState();
-        $this->setState('authState', $authState);
         $defaultParams = [
             'appid' => $this->clientId,
             'redirect_uri' => $this->getReturnUrl(),
@@ -99,8 +99,10 @@ class Weixin extends OAuth2
         if (!empty($this->scope)) {
             $defaultParams['scope'] = $this->scope;
         }
+        $authState = $this->generateAuthState();
+        $this->setState('authState', $authState);
         $defaultParams['state'] = $authState;
-        $url = $this->type == 'mp'?$this->authUrlMp:$this->authUrl;
+        $url = $this->type == 'mp' ? $this->authUrlMp : $this->authUrl;
         return $this->composeUrl($url, array_merge($defaultParams, $params));
     }
 
@@ -109,17 +111,9 @@ class Weixin extends OAuth2
      */
     public function fetchAccessToken($authCode, array $params = [])
     {
-        $authState = $this->getState('authState');
-        if (!isset($_REQUEST['state']) || empty($authState) || strcmp($_REQUEST['state'], $authState) !== 0) {
-            throw new HttpException(400, 'Invalid auth state parameter.');
-        } else {
-            $this->removeState('authState');
-        }
-
         $params['appid'] = $this->clientId;
         $params['secret'] = $this->clientSecret;
         return parent::fetchAccessToken($authCode, $params);
-
     }
 
     /**
@@ -156,14 +150,6 @@ class Weixin extends OAuth2
         return Yii::$app->getUrlManager()->createAbsoluteUrl($params);
     }
 
-    /**
-     * Generates the auth state value.
-     * @return string auth state value.
-     */
-    protected function generateAuthState()
-    {
-        return sha1(uniqid(get_class($this), true));
-    }
 
     /**
      * @inheritdoc
