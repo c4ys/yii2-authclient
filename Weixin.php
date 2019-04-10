@@ -128,13 +128,23 @@ class Weixin extends OAuth2
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function applyAccessTokenToRequest($request, $accessToken)
+    {
+        $data = $request->getData();
+        $data['lang'] = 'zh_CN';
+        $data['openid'] = $accessToken->getParam('openid');
+        $data['access_token'] = $accessToken->getToken();
+        $request->setData($data);
+    }
+
+    /**
      * @inheritdoc
      */
     protected function initUserAttributes()
     {
         return $this->api('sns/userinfo');
-//        $userAttributes['id'] = $userAttributes['unionid'];
-//        return $userAttributes;
     }
 
     /**
@@ -156,7 +166,11 @@ class Weixin extends OAuth2
      */
     protected function defaultName()
     {
-        return 'weixin';
+        if ($this->type=='mp') {
+            return 'mpweixin';
+        } else {
+            return 'weixin';
+        }
     }
 
     /**
@@ -164,7 +178,11 @@ class Weixin extends OAuth2
      */
     protected function defaultTitle()
     {
-        return 'Weixin';
+        if ($this->type=='mp') {
+            return '公众号';
+        } else {
+            return '微信';
+        }
     }
 
     /**
